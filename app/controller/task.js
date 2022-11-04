@@ -38,7 +38,7 @@ class TaskController {
   };
 
   /**
-   * @description Retrieve and return all greetings from the database.
+   * @description Retrieve and return all tasks from the database.
    * @param {*} request does not take any parameter
    * @param {*} response sends response from server
    */
@@ -69,7 +69,6 @@ class TaskController {
 
   /**
    * @description Retrieve and return Task associated with _id ,from the database.
-   * @param {*} request takes _id that is greetingID
    * @param {*} response sends response from server
    */
   findTaskByStatus = (request, response) => {
@@ -94,43 +93,6 @@ class TaskController {
             data: TaskResult,
           });
           console.log('SUCCESS003: Data retrieved');
-        }
-      },
-    );
-  };
-
-  /**
-   * @description update Task by _id
-   * @param {*} request takes _id that is greetingID
-   * @param {*} response sends response from server
-   */
-  updateTaskByTaskId = (request, response) => {
-    console.log('TRACKED_PATH: Inside controller');
-    const encodedBody = helper.getEncodedBodyFromHeader(request);
-    TaskServices.updateTaskById(
-      request.params.TaskId,
-      {
-        title: request.body.status,
-        description: request.body.description,
-      },
-      (error, TaskResult) => {
-        if (error) {
-          response.send({
-            success: false,
-            status_code: 404,
-            message: `Task not found with id ${request.params.TaskId}`,
-          });
-          console.log(
-            `ERR004: Task  not found with id ${request.params.TaskId}`,
-          );
-        } else {
-          response.send({
-            success: true,
-            status_code: 200,
-            message: 'Task has been updated',
-            updated_data: TaskResult,
-          });
-          console.log('SUCCESS004: Task has been updated');
         }
       },
     );

@@ -3,7 +3,6 @@ const { connectDb } = require('./config/dbconfig');
 require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 4000;
-//const route = require('./app/routes/user');
 const route = require('./app/routes');
 
 // parse requests
@@ -17,7 +16,6 @@ app.listen(PORT, () =>{
 });
 
 connectDb();
-
 
 // Initialize the route
 route.routeToControllers(app);
