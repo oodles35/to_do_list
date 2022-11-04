@@ -83,7 +83,7 @@ class TaskController {
             message: `Task not found with id ${request.query.status}`,
           });
           console.log(
-            `ERR003: Task not found with id ${request.params.status}`,
+            `ERR003: Task not found with id ${request.query.status}`,
           );
         } else {
           response.send({
