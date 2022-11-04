@@ -72,8 +72,26 @@ class TaskModel {
     Task.findByIdAndDelete(taskData, (error, taskResult) => {
       error ? callback(error, null) : callback(null, taskResult);
     });
-  }
- 
+  };
+
+   /**
+   * @description update Task  data existed in database
+   * @param {*} TaskId holds _id that is Task  id
+   * @param {*} dataToUpdate takes data to be upadated in json formate
+   * @param {*} callback holds a function
+   */
+    updateTaskByTaskId = (taskId, dataToUpdate, callback) => {
+      console.log('TRACKED_PATH: Inside model');
+      Task.findByIdAndUpdate(
+        taskId,
+        dataToUpdate,
+        { new: true },
+        (error, taskResult) => {
+          error ? callback(error, null) : callback(null, taskResult);
+        },
+      );
+    }
+
 }
 
 module.exports = new TaskModel();

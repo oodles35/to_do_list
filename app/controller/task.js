@@ -99,6 +99,43 @@ class TaskController {
   };
 
   /**
+   * @description update Task by _id
+   * @param {*} request takes _id that is taskId
+   * @param {*} response sends response from server
+   */
+   updateTaskByTaskId = (request, response) => {
+    console.log('TRACKED_PATH: Inside controller');
+    const encodedBody = helper.getEncodedBodyFromHeader(request);
+    TaskServices.updateTaskById(
+      request.params.taskId,
+      {
+        status: request.body.status,
+        description: request.body.description,
+      },
+      (error, taskResult) => {
+        if (error) {
+          response.send({
+            success: false,
+            status_code: 404,
+            message: `Task not found with id ${request.params.taskId}`,
+          });
+          console.log(
+            `ERR004: Task  not found with id ${request.params.taskId}`,
+          );
+        } else {
+          response.send({
+            success: true,
+            status_code: 200,
+            message: 'Task has been updated',
+            updated_data: taskResult,
+          });
+          console.log('SUCCESS004: Task has been updated');
+        }
+      },
+    );
+  };
+
+  /**
    * @description delete Task  by _id that is TaskId
    * @param {*} request takes _id that is TaskId
    * @param {*} response sends response from server

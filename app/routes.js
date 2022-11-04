@@ -27,6 +27,9 @@ class Routes {
     // Retrieve a single Task with TaskId
     app.get('/filterTask/byStatus', helper.verifyToken, TaskController.findTaskByStatus);
 
+    // Update task with TaskId
+    app.put('/updateTask/:taskId', helper.verifyToken, TaskController.updateTaskByTaskId);
+
   }
 }
 

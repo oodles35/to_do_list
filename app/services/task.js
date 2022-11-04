@@ -75,6 +75,23 @@ class TaskServices {
     });
   };
 
+    /**
+   * @description update Task  data existed in database, using model's mothod
+   * @param {*} TaskId holds _id that is Task  id
+   * @param {*} dataToUpdate takes data to be upadated in json formate
+   * @param {*} callback holds a function
+   */
+     updateTaskById = (taskId, dataToUpdate, callback) => {
+      console.log('TRACKED_PATH: Inside services');
+      TaskModel.updateTaskByTaskId(taskId, dataToUpdate, (error, taskResult) => {
+        if (error) {
+          callback(error, null);
+        } else {
+          callback(null, taskResult);
+        }
+      });
+    }
+
   /**
    * @description Delete Task by id and return response to controller
    * @method removeTask is used to remove Task by ID
